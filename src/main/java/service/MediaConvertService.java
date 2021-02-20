@@ -3,8 +3,6 @@ package service;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.mediaconvert.AWSMediaConvert;
-import com.amazonaws.services.mediaconvert.AWSMediaConvertAsync;
-import com.amazonaws.services.mediaconvert.AWSMediaConvertAsyncClientBuilder;
 import com.amazonaws.services.mediaconvert.AWSMediaConvertClientBuilder;
 import com.amazonaws.services.mediaconvert.model.*;
 import java.util.*;

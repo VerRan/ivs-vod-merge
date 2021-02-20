@@ -1,5 +1,7 @@
 package service;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.handlers.AsyncHandler;
 import com.amazonaws.regions.Regions;
@@ -27,12 +29,14 @@ public class AsyncMediaConvertService {
         DescribeEndpointsRequest describeEndpointsRequest =new DescribeEndpointsRequest();
         DescribeEndpointsResult endpoint =  awsMediaConvertAsync.describeEndpoints(describeEndpointsRequest);
         String endpointUrl = endpoint.getEndpoints().get(0).getUrl();
-
+        System.out.println("endpointUrl is "+endpointUrl);
         AwsClientBuilder.EndpointConfiguration endpointConfiguration
                 =new AwsClientBuilder.EndpointConfiguration(endpointUrl,Regions.US_WEST_2.getName());
 
         awsMediaConvertAsync = AWSMediaConvertAsyncClientBuilder.standard()
                 .withEndpointConfiguration(endpointConfiguration)
+                .withCredentials(new AWSStaticCredentialsProvider
+                        (new BasicAWSCredentials("AKIAI5DA4XSYAQFLLT6A","MXoCRAh0+HvFy2uRtbfbR9TfiuKJlJQSQ8OA8S8E")))
                 .build();
     }
 

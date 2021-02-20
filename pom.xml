@@ -19,15 +19,22 @@
 
     <dependency>
         <groupId>com.amazonaws</groupId>
-        <artifactId>  aws-java-sdk-core</artifactId>
+        <artifactId>aws-java-sdk-core</artifactId>
         <version>1.11.747</version>
     </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.11.747</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>s
+    </dependencies>
 
 </project>
