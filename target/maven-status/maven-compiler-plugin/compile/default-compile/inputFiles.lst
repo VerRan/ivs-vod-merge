@@ -1,4 +1,4 @@
-/Users/lht/bigdata/lovebuy/ivs-vod-merge/src/main/java/service/MediaConvertService.java
-/Users/lht/bigdata/lovebuy/ivs-vod-merge/src/main/java/service/JobHandler.java
-/Users/lht/bigdata/lovebuy/ivs-vod-merge/src/main/java/service/S3Service.java
-/Users/lht/bigdata/lovebuy/ivs-vod-merge/src/main/java/service/AsyncMediaConvertService.java
+/home/ec2-user/environment/ivs-vod-merge/src/main/java/service/JobHandler.java
+/home/ec2-user/environment/ivs-vod-merge/src/main/java/service/AsyncMediaConvertService.java
+/home/ec2-user/environment/ivs-vod-merge/src/main/java/service/S3Service.java
+/home/ec2-user/environment/ivs-vod-merge/src/main/java/service/MediaConvertService.java

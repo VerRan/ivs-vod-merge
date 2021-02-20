@@ -9,12 +9,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import com.amazonaws.regions.Regions;
 
 import static com.amazonaws.auth.profile.internal.ProfileKeyConstants.REGION;
 
 public class S3Service {
 
-    private AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(REGION).build();
+    private AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.US_WEST_2).build();
 
 
     public boolean checkFile(String srcBucket,String srcKey) {
@@ -30,8 +31,9 @@ public class S3Service {
                 if (records.length > 0) {
                     if (records[0].equals("#EXT-X-TWITCH-TOTAL-SECS")) {
                         currentFileTotalSecs = records[1];
+                        System.out.println("currentFileTotalSecs is "+currentFileTotalSecs);
                         if(currentFileTotalSecs.equals("0.000")){
-                            return true;
+                            return false;
                         }
                     }
                 }
@@ -40,6 +42,6 @@ public class S3Service {
             e.printStackTrace();
         }
 
-        return false;
+        return true;
     }
 }

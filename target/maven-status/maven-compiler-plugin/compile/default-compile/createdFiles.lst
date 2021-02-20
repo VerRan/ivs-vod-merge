@@ -1,4 +1,4 @@
 service/JobHandler.class
-service/S3Service.class
-service/MediaConvertService.class
 service/AsyncMediaConvertService.class
+service/MediaConvertService.class
+service/S3Service.class

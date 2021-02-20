@@ -20,13 +20,15 @@ public class MediaConvertTest {
 //        String m3u8file_160p = inputFile.replace("master.m3u8","160p30/playlist.m3u8");
         String bucket = "vod-liuhengtao";
         String key = "ivs/517141035927/RBb8M9xU3DBu/2021-01-26T11-58-28.33Z/CxbvSCiFgcR4/media/hls/160p30/playlist.m3u8";
-        if(!s3Service.checkFile(bucket,key)){
+        if(s3Service.checkFile(bucket,key)){
+            System.out.println("input file is  valid");
+        }else{
             System.out.println("input file is not valid");
         }
     }
 
 
-    @Test
+    // @Test
     public void testCreateJob(){
         String input1 = "s3://vod-liuhengtao/ivs/517141035927/RBb8M9xU3DBu/2021-01-26T11-58-28.33Z/CxbvSCiFgcR4/media/hls/master.m3u8";
         String input2 = "s3://vod-liuhengtao/ivs/517141035927/RBb8M9xU3DBu/2021-01-26T11-58-28.33Z/CxbvSCiFgcR4/media/hls/master.m3u8";
@@ -38,7 +40,7 @@ public class MediaConvertTest {
     }
 
 
-    @Test
+    // @Test
     public void testAsyncCreateJob(){
         String input1 = "s3://vod-liuhengtao/ivs/517141035927/RBb8M9xU3DBu/2021-01-26T11-58-28.33Z/CxbvSCiFgcR4/media/hls/master.m3u8";
         String input2 = "s3://vod-liuhengtao/ivs/517141035927/RBb8M9xU3DBu/2021-01-26T11-58-28.33Z/CxbvSCiFgcR4/media/hls/master.m3u8";
