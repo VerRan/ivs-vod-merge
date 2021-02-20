@@ -32,12 +32,6 @@ public class AsyncMediaConvertService {
         System.out.println("endpointUrl is "+endpointUrl);
         AwsClientBuilder.EndpointConfiguration endpointConfiguration
                 =new AwsClientBuilder.EndpointConfiguration(endpointUrl,Regions.US_WEST_2.getName());
-
-        awsMediaConvertAsync = AWSMediaConvertAsyncClientBuilder.standard()
-                .withEndpointConfiguration(endpointConfiguration)
-                .withCredentials(new AWSStaticCredentialsProvider
-                        (new BasicAWSCredentials("AKIAI5DA4XSYAQFLLT6A","MXoCRAh0+HvFy2uRtbfbR9TfiuKJlJQSQ8OA8S8E")))
-                .build();
     }
 
 
