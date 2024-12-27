@@ -1,18 +1,96 @@
-## 更新记录
-### 2021-1-21 日添加校验m3u8文件时长为0导致mediaConvert 转换异常修复。
-1. 测试方法 执行MediaConvertTest类 checkFile方法
-2. 对应逻辑通过S3Service类实现
+# IVS VOD Merge Utility
 
+A Java utility for merging Amazon IVS (Interactive Video Service) VOD files using AWS MediaConvert. This tool enables merging multiple m3u8 files into a single video output through AWS MediaConvert service.
 
-## 处理逻辑
-### 触发逻辑
-通过手机APP调用后端JAVA API，实现文件合并，APP传递要合并的文件地址
+## Features
 
-### 后端API实现
-下拨API逻辑中调用MediaConvert API实现合并 ，同时记录jobId到数据库，通过回掉函数实现状态更新，展示点播列表
+- Merge multiple m3u8 files from IVS recordings
+- Asynchronous processing with job status tracking
+- S3 file validation to prevent MediaConvert processing errors
+- Template-based MediaConvert job configuration
+- AWS SDK integration for MediaConvert and S3 services
 
-## 使用方法
-1. 通过AWS 控制台的 MediaConvert 服务导入template目录下的模版
-2. 创建MediaConvert所需角色具体方法[参考](https://github.com/aws-samples/aws-media-services-simple-vod-workflow/tree/master/1-IAMandS3)
-3. 执行MediaConvertTest类,该类提供了异步调用，通过回掉函数实现当任务执行完成后的服务调用
-4. 
+## Prerequisites
+
+- Java 7 or higher
+- Maven
+- AWS Account with access to:
+  - AWS MediaConvert
+  - Amazon S3
+  - AWS IAM (for role configuration)
+
+## Setup
+
+1. Import the MediaConvert job template:
+   - Navigate to AWS MediaConvert console
+   - Import the template from `template/job.json`
+
+2. Configure IAM Role:
+   - Create an IAM role for MediaConvert
+   - Ensure the role has necessary permissions for MediaConvert and S3
+   - For detailed setup instructions, refer to [AWS Media Services Simple VOD Workflow](https://github.com/aws-samples/aws-media-services-simple-vod-workflow/tree/master/1-IAMandS3)
+
+3. Build the project:
+   ```bash
+   mvn clean install
+   ```
+
+## Usage
+
+### Integration with Backend API
+
+1. The merging process is typically triggered through a mobile app calling your backend API
+2. Your API implementation should:
+   - Call the MediaConvert service using this utility
+   - Store the job ID for status tracking
+   - Update the status through callback functions
+   - Display the merged video in VOD playlist
+
+### Code Example
+
+```java
+// Initialize the service
+MediaConvertService service = new MediaConvertService();
+
+// Create a merge job
+String jobId = service.createJob(
+    "templateName",
+    "roleArn",
+    "s3://bucket/file1.m3u8",
+    "s3://bucket/file2.m3u8"
+);
+
+// Check job status
+String status = service.queryJobStatus(jobId);
+```
+
+## Testing
+
+Run the included test suite using:
+```bash
+mvn test
+```
+
+The `MediaConvertTest` class provides examples of:
+- Asynchronous job execution
+- Callback function implementation
+- M3u8 file validation
+
+## Changelog
+
+### 2021-01-21
+- Added validation for m3u8 files with 0 duration
+- Fixed MediaConvert conversion issues
+- Implementation details in `S3Service` class
+- Test cases available in `MediaConvertTest.checkFile()`
+
+## Dependencies
+
+- AWS Java SDK MediaConvert (1.11.747)
+- AWS Java SDK Core (1.11.747)
+- AWS Java SDK S3 (1.11.747)
+- JUnit (4.12) for testing
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
